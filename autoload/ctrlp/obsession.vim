@@ -56,7 +56,7 @@ endfunction
 "
 function! ctrlp#obsession#accept(mode, str)
     call ctrlp#exit()
-    execute 'Prosession' a:str
+    execute 'Prosession' g:prosession_dir . a:str . '.vim'
 endfunction
 
 " Do something before entering ctrlp?
