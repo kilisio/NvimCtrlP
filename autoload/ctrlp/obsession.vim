@@ -33,7 +33,7 @@ call add(g:ctrlp_ext_vars, {
 \   'lname'     : 'Select your obsession',
 \   'sname'     : 'obsession',
 \   'type'      : 'path',
-\   'sort'      : 1,
+\   'sort'      : 0,
 \   'specinput' : 0,
 \})
 
