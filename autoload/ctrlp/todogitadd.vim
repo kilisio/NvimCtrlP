@@ -62,8 +62,18 @@ endfunction
 function! ctrlp#todogitadd#accept(mode, str)
     call ctrlp#exit()
     let gitRootDir = substitute(system('git rev-parse --show-toplevel'), '\n$', '', '')
-    let g:scratch_persistence_file = gitRootDir . '/src/apps/' . a:str . '/todo.txt'
-    execute "Scratch"
+    execute '80 vnew ' . gitRootDir . '/src/apps/' . a:str . '/todo.txt'
+    execute 'setlocal filetype=todotext'
+    setlocal bufhidden=hide
+    setlocal nobuflisted
+    " setlocal buftype=nofile
+    setlocal foldcolumn=0
+    setlocal nofoldenable
+    setlocal nonumber
+    setlocal noswapfile
+    setlocal winfixheight
+    setlocal winfixwidth
+    execute '$'
     execute "sort"
 
     " call luaeval("require('todotxt-nvim').setup({ todo_file = '" . gitRootDir . "/src/apps/" . a:str . "/todo.txt' })")
