@@ -47,7 +47,7 @@ function! ctrlp#todogitadd#init()
   let gitRootDir = substitute(system('git rev-parse --show-toplevel'), '\n$', '', '')
 
   if empty(confirm_git_dir)
-    let flist = glob(fnameescape(gitRootDir . '/src/apps').'/*/', 1, 1)
+    let flist = glob(fnameescape(gitRootDir . '/src').'/*/', 1, 1)
     let flist = map(flist, "fnamemodify(v:val, ':h:t')")
     return flist
   endif
@@ -62,7 +62,7 @@ endfunction
 function! ctrlp#todogitadd#accept(mode, str)
     call ctrlp#exit()
     let gitRootDir = substitute(system('git rev-parse --show-toplevel'), '\n$', '', '')
-    execute '80 vnew ' . gitRootDir . '/src/apps/' . a:str . '/todo.txt'
+    execute '80 vnew ' . gitRootDir . '/src/' . a:str . '/todo.txt'
     execute 'setlocal filetype=todotext'
     setlocal bufhidden=hide
     setlocal nobuflisted
@@ -76,7 +76,7 @@ function! ctrlp#todogitadd#accept(mode, str)
     execute '$'
     execute "sort"
 
-    " call luaeval("require('todotxt-nvim').setup({ todo_file = '" . gitRootDir . "/src/apps/" . a:str . "/todo.txt' })")
+    " call luaeval("require('todotxt-nvim').setup({ todo_file = '" . gitRootDir . "/src/" . a:str . "/todo.txt' })")
     " execute "ToDoTxtCapture"
 endfunction
 
